@@ -8,10 +8,16 @@
 </head>
 <body>
     <form id="form" action="">
-        <input id="kmiForm" type="text" name="" id="">
+        <label for="svoris">Svoris (kg)</label>
+        <input id="kmiFormSvoris" type="number" name="svoris">
+        
+        <label for="ugis">Ugis (cm)</label>
+        <input id="kmiFormUgis" type="number" name="ugis">
+
         <button type="submit">submit</button>
     </form>
     <div id="resultKmi"></div>
+    <button id="resetBtn" class="reset-btn-display-none">Reset</button>
     <script src="./script.js" defer></script>
 </body>
 </html>
