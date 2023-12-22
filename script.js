@@ -31,19 +31,19 @@ function calculateKmi(kmiUgis, kmiSvoris) {
 
   if (calculatedKmi <= 18.5) {
     spalva = 'yellow'
-    text = `Jus sveriate ${kmiSvoris}, sveriate per mazai, jusu kuno mases indeksas
+    text = `Jūs sveriate ${kmiSvoris}, sveriate per mažai, jūsų kūno masės indeksas
     yra: ${calculatedKmi}`;
   } else if (calculatedKmi > 18.5 && calculatedKmi <= 25) {
     spalva = 'green'
-    text = `Jus sveriate ${kmiSvoris}, jusu svoris yra normalus, kuno mases indeksas
+    text = `Jūs sveriate ${kmiSvoris}, jūsų svoris yra normalus, kūno masės indeksas
     yra: ${calculatedKmi}`;
   } else if (calculatedKmi > 25 && calculatedKmi <= 30) {
     spalva = 'orange'
-    text = `Jus sveriate ${kmiSvoris}, sveriate siek tiek per daug, jusu kuno mases indeksas
+    text = `Jūs sveriate ${kmiSvoris}, sveriate šiek tiek per daug, jūsų kūno masės indeksas
     yra: ${calculatedKmi}`;
   } else if (calculatedKmi > 30) {
     spalva = 'red'
-    text = `Jus sveriate ${kmiSvoris}, sveriate per daug, jusu kuno mases indeksas
+    text = `Jūs sveriate ${kmiSvoris}, sveriate per daug, jūsų kūno masės indeksas
     yra: ${calculatedKmi}`;
   }
   return renderKmiResult(text, spalva);
