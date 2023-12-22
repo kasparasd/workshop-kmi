@@ -11,8 +11,15 @@ formDOM.addEventListener("submit", (event) => {
   kmiUgis = kmiFormUgis.value;
   kmiSvoris = kmiFormSvoris.value;
 
-  resetBtn.classList.remove('reset-btn-display-none')
-  calculateKmi(kmiUgis, kmiSvoris);
+  if(kmiUgis.length && kmiSvoris.length && Number(kmiUgis) > 0 && Number(kmiSvoris) > 0){
+      resetBtn.classList.remove('reset-btn-display-none')
+      return calculateKmi(kmiUgis, kmiSvoris);
+  }
+    
+  if(!kmiUgis && !kmiSvoris || Number(kmiUgis) <= 0 || Number(kmiSvoris) <= 0){
+    resetBtn.classList.remove('reset-btn-display-none')
+   return renderError('Prašom patikrinti įvestus skaičius');
+  }
 
 });
 
@@ -31,27 +38,31 @@ function calculateKmi(kmiUgis, kmiSvoris) {
 
   if (calculatedKmi <= 18.5) {
     spalva = 'yellow'
-    text = `Jūs sveriate ${kmiSvoris}, sveriate per mažai, jūsų kūno masės indeksas
+    text = `Jūs sveriate ${kmiSvoris} kg, sveriate per mažai, jūsų kūno masės indeksas
     yra: ${calculatedKmi}`;
   } else if (calculatedKmi > 18.5 && calculatedKmi <= 25) {
     spalva = 'green'
-    text = `Jūs sveriate ${kmiSvoris}, jūsų svoris yra normalus, kūno masės indeksas
+    text = `Jūs sveriate ${kmiSvoris} kg, jūsų svoris yra normalus, kūno masės indeksas
     yra: ${calculatedKmi}`;
   } else if (calculatedKmi > 25 && calculatedKmi <= 30) {
     spalva = 'orange'
-    text = `Jūs sveriate ${kmiSvoris}, sveriate šiek tiek per daug, jūsų kūno masės indeksas
+    text = `Jūs sveriate ${kmiSvoris} kg, sveriate šiek tiek per daug, jūsų kūno masės indeksas
     yra: ${calculatedKmi}`;
   } else if (calculatedKmi > 30) {
     spalva = 'red'
-    text = `Jūs sveriate ${kmiSvoris}, sveriate per daug, jūsų kūno masės indeksas
+    text = `Jūs sveriate ${kmiSvoris} kg, sveriate per daug, jūsų kūno masės indeksas
     yra: ${calculatedKmi}`;
   }
   return renderKmiResult(text, spalva);
 }
 
-function renderKmiResult(text, spalva) {
-  // const text = document.createTextNode("This just got added");
+function renderError(text){
 
+    const HTML = `<h2 id='kmiDomRezultatas' style="color: red" class="title">${text}</h2>`;
+    return (resultKmi.innerHTML = HTML);
+}
+
+function renderKmiResult(text, spalva) {
   const HTML = `<h2 id='kmiDomRezultatas' style="color: ${spalva}" class="title">${text}</h2>`;
 
   return (resultKmi.innerHTML = HTML);
